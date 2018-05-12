@@ -1,0 +1,37 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+	xmlns:h="urn:import:gwt.material.design.client.ui.html" 
+	xmlns:d="urn:import:gwt.material.design.client.ui"
+   xmlns:v="urn:import:com.ifrs.client.view">
+	<ui:style>
+	</ui:style>
+	<g:HTMLPanel>
+	<v:TabWidget ui:field="tabWidget"></v:TabWidget>
+	<!--  
+<d:MaterialRow>
+	<d:MaterialColumn>
+	<d:MaterialButton text ="Add Sector" ui:field="btnAddSector"></d:MaterialButton>
+	<d:MaterialRow>
+	<d:MaterialColumn ui:field="sectorContainer">
+	</d:MaterialColumn>
+	</d:MaterialRow>
+	<d:MaterialRow>
+	<d:MaterialButton text="Save Sector" ui:field="btnAdminSave"></d:MaterialButton>
+	</d:MaterialRow>
+	</d:MaterialColumn>
+	<d:MaterialColumn>
+	<d:MaterialButton text ="Add Company" ui:field="btnAddCompany"></d:MaterialButton>
+	<d:MaterialRow>
+	<d:MaterialColumn ui:field="companyContainer">
+	</d:MaterialColumn>
+	</d:MaterialRow>
+	<d:MaterialRow>
+	<d:MaterialButton text="Save Company" ui:field="btnSaveCompany"></d:MaterialButton>
+	</d:MaterialRow>
+	</d:MaterialColumn>
+   
+</d:MaterialRow>
+-->
+	</g:HTMLPanel>
+</ui:UiBinder> 
