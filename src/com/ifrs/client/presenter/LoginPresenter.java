@@ -11,7 +11,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.ifrs.client.GreetingServiceAsync;
 import com.ifrs.shared.User;
@@ -19,7 +18,7 @@ import com.ifrs.shared.User;
 import gwt.material.design.client.ui.MaterialLoader;
 import gwt.material.design.client.ui.MaterialTextBox;
 
-public class LoginPresenter implements Presenter 
+public class LoginPresenter implements Presenter
 
 {
 	private final GreetingServiceAsync rpcService;
@@ -27,29 +26,29 @@ public class LoginPresenter implements Presenter
 	private final Display display;
 	private Logger logger = Logger.getLogger("DashBoardPresenter");
 
-	public interface Display 
-	{
+	public interface Display {
 		Widget asWidget();
+
 		Object getHtmlErrorMessage = null;
 
 		MaterialTextBox getTxtPassword();
+
 		MaterialTextBox getTxtUserName();
+
 		HasClickHandlers getBtnSubmit();
-		//		MaterialListBox getListYears();
+
+		// MaterialListBox getListYears();
 		Label getLblError();
 
-	}  
+	}
 
-
-	public LoginPresenter(GreetingServiceAsync rpcService, HandlerManager eventBus, Display view) 
-	{
+	public LoginPresenter(GreetingServiceAsync rpcService, HandlerManager eventBus, Display view) {
 		this.rpcService = rpcService;
 		this.eventBus = eventBus;
 		this.display = view;
 	}
 
-	public void go(HasWidgets container) 
-	{
+	public void go(HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
 		bind();
@@ -57,33 +56,27 @@ public class LoginPresenter implements Presenter
 
 	private void bind() {
 
-
 		display.getBtnSubmit().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 
-				if(display.getTxtUserName().getText().equals("")|| display.getTxtPassword().getText().equals("")){
+				if (display.getTxtUserName().getText().equals("") || display.getTxtPassword().getText().equals("")) {
 					display.getLblError().setVisible(true);
 					display.getLblError().setText("username / password cannot be empty");
-				}else{
+				} else {
 
-					signIn(display.getTxtUserName().getText(),display.getTxtPassword().getText());
+					signIn(display.getTxtUserName().getText(), display.getTxtPassword().getText());
 
 				}
 			}
-
 
 		});
 
 	}
 
-
-
-	public void signIn(String userName,String password)
-	{
+	public void signIn(String userName, String password) {
 		MaterialLoader.progress(true);
 
-		rpcService.signIn(userName,password, new AsyncCallback<User>()
-
+		rpcService.signIn(userName, password, new AsyncCallback<User>()
 
 		{
 			public void onFailure(Throwable ex) {
@@ -92,14 +85,11 @@ public class LoginPresenter implements Presenter
 			}
 
 			public void onSuccess(User user) {
-				if(user != null) 
-				{
+				if (user != null) {
 
 					display.getLblError().setVisible(false);
-					History.newItem("admin");
-				}
-				else 
-				{
+					History.newItem("choices");
+				} else {
 					display.getLblError().setVisible(true);
 					display.getLblError().setText("username / password invalid");
 				}
@@ -110,5 +100,3 @@ public class LoginPresenter implements Presenter
 
 	}
 }
-
-

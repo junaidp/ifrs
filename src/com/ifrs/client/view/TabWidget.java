@@ -4,120 +4,89 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.StackPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import gwt.material.design.client.ui.MaterialButton;
 import gwt.material.design.client.ui.MaterialColumn;
 
 public class TabWidget extends Composite {
 
 	private static TabWidgetUiBinder uiBinder = GWT.create(TabWidgetUiBinder.class);
+	private StackPanel panel = new StackPanel();
 
 	interface TabWidgetUiBinder extends UiBinder<Widget, TabWidget> {
 	}
+
 	@UiField
-	MaterialColumn containerSector;
+	MaterialColumn containerAddContract;
 	@UiField
-	MaterialColumn containerCompany;
+	MaterialColumn containerContractList;
 	@UiField
-	MaterialColumn containerDomain;
+	MaterialColumn containerQuestionair;
 	@UiField
 	MaterialColumn containerSubDomain;
+
 	@UiField
-	MaterialButton btnAddSector;
-	@UiField
-	MaterialButton btnAddCompany;
-	@UiField
-	MaterialButton btnSaveSector;
-	@UiField
-	MaterialButton btnSaveCompany;
+	MaterialColumn containerNewLease;
 
 	public TabWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
+		ContractForm c = new ContractForm();
+		containerAddContract.add(c);
+
+		ContractListViewTable contractView = new ContractListViewTable();
+		containerContractList.add(contractView);
+		panel.add(c, "Add Contract");
+		panel.add(contractView, "Contract List");
+
+		panel.setWidth("900px");
+
+		containerNewLease.add(panel);
+
+		QuestionairView question = new QuestionairView();
+		containerSubDomain.add(question);
+		containerQuestionair.add(question);
+
 	}
-
-
-	public MaterialColumn getContainerSector() {
-		return containerSector;
-	}
-
-
-	public void setContainerSector(MaterialColumn containerSector) {
-		this.containerSector = containerSector;
-	}
-
-
-	public MaterialColumn getContainerCompany() {
-		return containerCompany;
-	}
-
-
-	public void setContainerCompany(MaterialColumn containerCompany) {
-		this.containerCompany = containerCompany;
-	}
-
-
-	public MaterialColumn getContainerDomain() {
-		return containerDomain;
-	}
-
-
-	public void setContainerDomain(MaterialColumn containerDomain) {
-		this.containerDomain = containerDomain;
-	}
-
 
 	public MaterialColumn getContainerSubDomain() {
 		return containerSubDomain;
 	}
 
-
 	public void setContainerSubDomain(MaterialColumn containerSubDomain) {
 		this.containerSubDomain = containerSubDomain;
 	}
 
-
-	public MaterialButton getBtnAddSector() {
-		return btnAddSector;
+	public MaterialColumn getContainerAddContract() {
+		return containerAddContract;
 	}
 
-
-	public void setBtnAddSector(MaterialButton btnAddSector) {
-		this.btnAddSector = btnAddSector;
+	public void setContainerAddContract(MaterialColumn containerAddContract) {
+		this.containerAddContract = containerAddContract;
 	}
 
-
-	public MaterialButton getBtnAddCompany() {
-		return btnAddCompany;
+	public MaterialColumn getContainerContractList() {
+		return containerContractList;
 	}
 
-
-	public void setBtnAddCompany(MaterialButton btnAddCompany) {
-		this.btnAddCompany = btnAddCompany;
+	public void setContainerContractList(MaterialColumn containerContractList) {
+		this.containerContractList = containerContractList;
 	}
 
-
-	public MaterialButton getBtnSaveSector() {
-		return btnSaveSector;
+	public MaterialColumn getContainerQuestionair() {
+		return containerQuestionair;
 	}
 
-
-	public void setBtnSaveSector(MaterialButton btnSaveSector) {
-		this.btnSaveSector = btnSaveSector;
+	public void setContainerQuestionair(MaterialColumn containerQuestionair) {
+		this.containerQuestionair = containerQuestionair;
 	}
 
-
-	public MaterialButton getBtnSaveCompany() {
-		return btnSaveCompany;
+	public MaterialColumn getContainerNewLease() {
+		return containerNewLease;
 	}
 
-
-	public void setBtnSaveCompany(MaterialButton btnSaveCompany) {
-		this.btnSaveCompany = btnSaveCompany;
+	public void setContainerNewLease(MaterialColumn containerNewLease) {
+		this.containerNewLease = containerNewLease;
 	}
-
-
-	
 
 }

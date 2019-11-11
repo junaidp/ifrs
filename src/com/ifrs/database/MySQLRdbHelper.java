@@ -11,61 +11,56 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 import com.ifrs.shared.BaseDTO;
-import com.ifrs.shared.Company;
+import com.ifrs.shared.ContractDetailsEntity;
 import com.ifrs.shared.Sectors;
 import com.ifrs.shared.User;
 
-
-
-
 public class MySQLRdbHelper {
 
-    private SessionFactory sessionFactory;
-    Logger logger;
+	private SessionFactory sessionFactory;
+	Logger logger;
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-	this.sessionFactory = sessionFactory;
-    }
-
-    public User getAuthentication(String userid, String password) throws Exception {
-
-	User users = null;
-	Session session = null;
-	try {
-	    session = sessionFactory.openSession();
-
-	    Criteria crit = session.createCriteria(User.class);
-	    crit.add(Restrictions.eq("name", userid));
-	    crit.add(Restrictions.eq("password", password));
-	   
-	    List rsList = crit.list();
-	    for (Iterator it = rsList.iterator(); it.hasNext();) {
-		users = (User) it.next();
-		System.out.println(users.getPassword());
-	    }
-
-	} catch (Exception ex) {
-	    logger.warn(String.format("Exception occured in getAuthentication", ex.getMessage()), ex);
-	    System.out.println("Exception occured in getAuthentication" + ex.getMessage());
-
-	    throw new Exception("Exception occured in getAuthentication");
-	} finally {
-	    session.close();
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
-	return users;
-    }
+	public User getAuthentication(String userid, String password) throws Exception {
 
+		User users = null;
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
 
+			Criteria crit = session.createCriteria(User.class);
+			crit.add(Restrictions.eq("name", userid));
+			crit.add(Restrictions.eq("password", password));
+
+			List rsList = crit.list();
+			for (Iterator it = rsList.iterator(); it.hasNext();) {
+				users = (User) it.next();
+				System.out.println(users.getPassword());
+			}
+
+		} catch (Exception ex) {
+			logger.warn(String.format("Exception occured in getAuthentication", ex.getMessage()), ex);
+			System.out.println("Exception occured in getAuthentication" + ex.getMessage());
+
+			throw new Exception("Exception occured in getAuthentication");
+		} finally {
+			session.close();
+		}
+
+		return users;
+	}
 
 	public String saveRecord(ArrayList<BaseDTO> records) throws Exception {
 		Session session = null;
 
 		try {
 			session = sessionFactory.openSession();
-			for(int i=0; i<records.size(); i++){
-			session.saveOrUpdate(records.get(i));
-			session.flush();
+			for (int i = 0; i < records.size(); i++) {
+				session.saveOrUpdate(records.get(i));
+				session.flush();
 			}
 			return "Records Saved";
 
@@ -80,48 +75,86 @@ public class MySQLRdbHelper {
 	public ArrayList<Sectors> fetchSectors() throws Exception {
 		ArrayList<Sectors> sectorsList = new ArrayList<Sectors>();
 		Session session;
-		try{
+		try {
 			session = sessionFactory.openSession();
 			Criteria crit = session.createCriteria(Sectors.class);
-			
+
 			List rsList = crit.list();
 
-			for(Iterator it=rsList.iterator();it.hasNext();)
-			{
-				 Sectors sector =  (Sectors)it.next();
+			for (Iterator it = rsList.iterator(); it.hasNext();) {
+				Sectors sector = (Sectors) it.next();
 				sectorsList.add(sector);
 			}
 
 			return sectorsList;
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			logger.warn(String.format("Exception occured in getting sectorList", ex.getMessage()), ex);
-			System.out.println("Exception occured in getiing sectorList"+ ex.getMessage());
+			System.out.println("Exception occured in getiing sectorList" + ex.getMessage());
 
 			throw new Exception("Exception occured in getting SectorList");
-		}
-		finally{
+		} finally {
 
 		}
 	}
 
-	/*public String saveCompany(ArrayList<Company> company) throws Exception {
+	/*
+	 * public String saveCompany(ArrayList<Company> company) throws Exception {
+	 * Session session = null;
+	 * 
+	 * try { session = sessionFactory.openSession(); for(int i=0;
+	 * i<company.size(); i++){ session.saveOrUpdate(company.get(i));
+	 * session.flush(); } return "Record Saved";
+	 * 
+	 * } catch (Exception ex) {
+	 * logger.warn(String.format("Exception occured in saving Company",
+	 * ex.getMessage()), ex); throw new
+	 * Exception("Exception occured in save company"); } finally {
+	 * session.close(); } }
+	 */
+
+	// 2019 oct
+
+	public String saveContractDetail(ContractDetailsEntity contractDetail) throws Exception {
 		Session session = null;
 
 		try {
 			session = sessionFactory.openSession();
-			for(int i=0; i<company.size(); i++){
-			session.saveOrUpdate(company.get(i));
+			session.saveOrUpdate(contractDetail);
 			session.flush();
-			}
-			return "Record Saved";
+
+			return "Contract Saved";
 
 		} catch (Exception ex) {
-			logger.warn(String.format("Exception occured in saving Company", ex.getMessage()), ex);
-			throw new Exception("Exception occured in save company");
+			logger.warn(String.format("Exception occured in saving contractDetails", ex.getMessage()), ex);
+			throw new Exception("Exception occured in save contractDetails");
 		} finally {
 			session.close();
 		}
 	}
-*/
-    
+
+	public ArrayList<ContractDetailsEntity> fetchContractDetails() throws Exception {
+		ArrayList<ContractDetailsEntity> contractDetailsList = new ArrayList<ContractDetailsEntity>();
+		Session session;
+		try {
+			session = sessionFactory.openSession();
+			Criteria crit = session.createCriteria(ContractDetailsEntity.class);
+
+			List rsList = crit.list();
+
+			for (Iterator it = rsList.iterator(); it.hasNext();) {
+				ContractDetailsEntity contractDetails = (ContractDetailsEntity) it.next();
+				contractDetailsList.add(contractDetails);
+			}
+
+			return contractDetailsList;
+		} catch (Exception ex) {
+			logger.warn(String.format("Exception occured in getting contractDetails", ex.getMessage()), ex);
+			System.out.println("Exception occured in getiing contractDetails" + ex.getMessage());
+
+			throw new Exception("Exception occured in getting contractDetails");
+		} finally {
+
+		}
+	}
+
 }

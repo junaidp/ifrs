@@ -1,0 +1,64 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:d="urn:import:gwt.material.design.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+		font-size: 20;
+	}
+	</ui:style>
+	
+		<d:MaterialRow grid="s12">
+			<d:MaterialRow grid="s12">
+				<d:MaterialColumn grid="s3">
+					<d:MaterialLabel text="Lease Commencement Date"></d:MaterialLabel>
+				</d:MaterialColumn>
+				<d:MaterialColumn grid="s3">
+				<d:MaterialDatePicker  ui:field="picker"  placeholder="Date"  />
+				</d:MaterialColumn>
+			</d:MaterialRow>
+			<d:MaterialRow grid="s12">
+				<d:MaterialColumn grid="s3">
+					<d:MaterialLabel text="Class Of Asset"></d:MaterialLabel>
+				</d:MaterialColumn>
+				<d:MaterialColumn grid="s3">
+				<d:MaterialTextBox placeholder="Class" ui:field="txtClassAsset"></d:MaterialTextBox>
+				</d:MaterialColumn>
+			</d:MaterialRow>
+			<d:MaterialRow grid="s12">
+				<d:MaterialColumn grid="s3">
+					<d:MaterialLabel text="Lease Name"></d:MaterialLabel>
+				</d:MaterialColumn>
+				<d:MaterialColumn grid="s3">
+				<d:MaterialTextBox placeholder="Lease Name" ui:field="txtLeaseName"></d:MaterialTextBox>
+				</d:MaterialColumn>
+			</d:MaterialRow>
+			<d:MaterialRow grid="s12">
+				<d:MaterialColumn grid="s3">
+					<d:MaterialLabel text="Lessor Name"></d:MaterialLabel>
+				</d:MaterialColumn>
+				<d:MaterialColumn grid="s3">
+				<d:MaterialTextBox placeholder="Lessor Name" ui:field="txtLessorName"></d:MaterialTextBox>
+				</d:MaterialColumn>
+			</d:MaterialRow>
+			<d:MaterialRow grid="s12">
+				<d:MaterialColumn grid="s3">
+					<d:MaterialLabel text="Location"></d:MaterialLabel>
+				</d:MaterialColumn>
+				<d:MaterialColumn grid="s3">
+				<d:MaterialTextBox placeholder="Location" ui:field="txtLocation"></d:MaterialTextBox>
+				</d:MaterialColumn>
+			</d:MaterialRow>
+			<d:MaterialRow grid="s12">
+				<d:MaterialColumn grid="s3">
+					<d:MaterialLabel text="Other Condition"></d:MaterialLabel>
+				</d:MaterialColumn>
+				<d:MaterialColumn grid="s3">
+				<d:MaterialTextBox placeholder="Other Condition" ui:field="txtCondition"></d:MaterialTextBox>
+				</d:MaterialColumn>
+			</d:MaterialRow>
+			<d:MaterialButton text="Upload Contract" waves="LIGHT" textColor="WHITE" iconType="POLYMER" ui:field="btnUploadContract" grid="s6"></d:MaterialButton>
+			
+		</d:MaterialRow>
+
+</ui:UiBinder> 
